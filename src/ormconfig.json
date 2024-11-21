@@ -1,0 +1,17 @@
+{
+  "type": "mssql",  
+  "host": "localhost",
+  "port": 1433,
+  "username": "sa",
+  "password": "12345",
+  "database": "TAREAS",
+  "synchronize": false,
+  "logging": true,
+  "entities": ["src/entity/**/*.ts"],
+  "migrations": ["src/migration/**/*.ts"],
+  "subscribers": ["src/subscriber/**/*.ts"],
+  "extra": {
+    "encrypt": true, 
+    "trustServerCertificate": true
+  }
+}
