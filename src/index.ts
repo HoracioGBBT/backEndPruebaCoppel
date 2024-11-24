@@ -1,34 +1,31 @@
-import express from "express";
-import { DataSource } from "typeorm";
+import "reflect-metadata"
+import bodyParser from 'body-parser'
+import { ServerExpress } from "./config/server";
+import { AppDataSource } from "./config/typeorm"; 
+import logger from "./logger/logger";
+import path from "path";
+import cors from 'cors';
+import { RoutingModules } from "./middlewares/routing-modules.middleware"; 
 
-// Configuración de la base de datos (cargada desde ormconfig.json)
-const AppDataSource = new DataSource({
-    ...require("./ormconfig.json"),
+const server = new ServerExpress;
+
+ server.app.use(bodyParser.json({limit:'50mb'}));
+ server.app.use(cors());
+
+ 
+const routingModules = new RoutingModules();
+server.app.use(routingModules.run(server));
+
+
+
+
+server.startServer(async()=>{
+    logger.info('servidor corriendo en el puerto: ' + server.port);
+    try{
+        await AppDataSource.initialize();        
+        logger.info('Conectado a la base de datos');
+        
+    }catch(err){
+        logger.error(err);        
+    }
 });
-
-// Crear una instancia de Express
-const app = express();
-
-// Middleware para parsear JSON
-app.use(express.json());
-
-// Configurar rutas (un ejemplo básico)
-app.get("/", (req, res) => {
-    res.send("¡Servidor Express funcionando!");
-});
-
-// Inicializar la base de datos y arrancar el servidor
-const PORT = 3000; // Cambia el puerto si es necesario
-
-AppDataSource.initialize()
-    .then(() => {
-        console.log("¡Conexión a la base de datos establecida!");
-
-        // Iniciar el servidor Express
-        app.listen(PORT, () => {
-            console.log(`Servidor corriendo en http://localhost:${PORT}`);
-        });
-    })
-    .catch((error) => {
-        console.error("Error durante la inicialización de la base de datos:", error);
-    });
