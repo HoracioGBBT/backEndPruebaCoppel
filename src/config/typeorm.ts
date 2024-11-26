@@ -21,7 +21,7 @@ export const AppDataSource = new DataSource({
     },
     entities: [
         // join(__dirname, "/../../modules/**/*.entity.{js,ts}")
-        join(__dirname,"C:/Users/Jorge Horacio/Music/pruebaTecnica/backEnd/backEndPruebaCoppel/src/entity/*.entity.{js,ts}")
+        join(__dirname,"C:/Users/Usuario/Desktop/Back/backEndPruebaCoppel/src/entity/*.entity.{js,ts}")
     ],
     subscribers: [],
     migrations: [],

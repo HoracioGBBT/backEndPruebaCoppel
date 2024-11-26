@@ -12,7 +12,7 @@ export class GetAllActivitiesController implements Controller{
         
         try {
             
-            const Activities: Activity[] = await this.getAllActivityUseCase.run(req.body);
+            const Activities: Activity[] = await this.getAllActivityUseCase.run(req.query);
             return resp.json({
                 ok: true,
                 Activities

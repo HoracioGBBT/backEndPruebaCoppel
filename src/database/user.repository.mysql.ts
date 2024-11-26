@@ -13,13 +13,15 @@ export class UserRepositoryMysql implements UserRepository {
     ) { }    
 
    async getByParams(params: any): Promise<User> {
+    if(!params.username || !params.password){
+        return this.userMapper.toModel({})
+    }
         const userRepository = AppDataSource.getRepository(UserEntity);
         const userEntity = await userRepository.findOne({
             where: {
                 username: params.username,
                 password: params.password
             },
-            
         }
         
     )

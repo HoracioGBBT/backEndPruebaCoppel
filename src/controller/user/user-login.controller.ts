@@ -11,7 +11,8 @@ export class LoginUserController implements Controller{
     async run( req: Request, resp: Response ): Promise<any>{
         
         try {
-            const userRequest: User = this.userMapper.toModel(req.body)
+   
+            const userRequest: User = this.userMapper.toModel(req.query)
             const loggedUser: User = await this.loginUserUseCase.run(userRequest);
             return resp.json({
                 ok: true,
