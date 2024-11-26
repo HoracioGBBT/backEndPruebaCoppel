@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
         trustServerCertificate: true, 
       },
     synchronize: false,
-    logging: true,
+    logging: false,
     extra: {
         decimalNumbers: true
     },

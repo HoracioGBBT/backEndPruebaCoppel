@@ -7,16 +7,16 @@ import { SaveActivityUseCase } from "../../usecase/activity/save-activity.usecas
 
 export class SaveActivityController implements Controller{
 
-    constructor(private readonly saveActivityUseCase: SaveActivityUseCase){}
+    constructor(private readonly saveActivityUseCase: SaveActivityUseCase, private readonly activityMapper: ActivityMapper){}
 
     async run( req: Request, resp: Response ): Promise<any>{
-        
         try {
-            console.log(req.query);
-            //const Activities: Activity[] = await this.saveActivityUseCase.run(req.query);
+            const activitySaved = this.activityMapper.toModel(req.body.params);
+            console.log(activitySaved)
+            const Activities: Activity[] = await this.saveActivityUseCase.run(activitySaved);
             return resp.json({
                 ok: true,
-                //Activities
+                Activities
             });
             
         } catch (error: any) {

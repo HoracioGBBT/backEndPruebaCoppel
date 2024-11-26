@@ -6,7 +6,7 @@
   "password": "12345",
   "database": "TAREAS",
   "synchronize": false,
-  "logging": true,
+  "logging": false,
   "entities": ["src/entity/**/*.ts"],
   "migrations": ["src/migration/**/*.ts"],
   "subscribers": ["src/subscriber/**/*.ts"],

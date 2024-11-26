@@ -8,7 +8,7 @@ export class ActivityRoutes implements Routes{
         const activityRoutes = Router();
         
         activityRoutes.get('/activity',getAllActivityController.run.bind(getAllActivityController));
-        activityRoutes.get('/save',saveActivityController.run.bind(saveActivityController));
+        activityRoutes.put('/save/a/b/c',saveActivityController.run.bind(saveActivityController));
 
 
         return activityRoutes;

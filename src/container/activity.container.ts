@@ -18,4 +18,4 @@ const saveActivityUseCase = new SaveActivityUseCase(activityRepository);
  * Controllers
  */
 export const getAllActivityController = new GetAllActivitiesController(getAllActivityUseCase);
-export const saveActivityController = new SaveActivityController(saveActivityUseCase);
+export const saveActivityController = new SaveActivityController(saveActivityUseCase,activityMapper);
