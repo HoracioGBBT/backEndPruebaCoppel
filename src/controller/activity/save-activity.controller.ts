@@ -12,7 +12,6 @@ export class SaveActivityController implements Controller{
     async run( req: Request, resp: Response ): Promise<any>{
         try {
             const activitySaved = this.activityMapper.toModel(req.body.params);
-            console.log(activitySaved)
             const Activities: Activity[] = await this.saveActivityUseCase.run(activitySaved);
             return resp.json({
                 ok: true,
@@ -20,7 +19,6 @@ export class SaveActivityController implements Controller{
             });
             
         } catch (error: any) {
-            console.log(error)
             return resp.json({
                 ok: false,
                 message: 'Ocurrió un error',
